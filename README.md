@@ -45,11 +45,27 @@ docker images
 docker run -d -p 8000:8000 fast-api-hello-world:v0.0.1
 
 # Check running containers
-docker ps
+# `-a` - Show all containers, including stopped
+docker ps -a
 
 # View container logs
 docker logs <container_id>
 
 # Stop container
 docker stop <container_id>
+
+# Removing a container
+# `-f` - Force remove running container
+docker rm -f <container_id_or_name>
+
+# Remove all stopped containers
+docker container prune
+
+# Removing image
+# tag is optional, can remove with only <image_id_or_name>
+# `-f` - Force removing an image that is tagged to a container
+docker rmi -f <image_id_or_name>:<tag>
+
+# Remove all unused images
+docker image prune -a
 ```
