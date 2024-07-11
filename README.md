@@ -34,15 +34,27 @@ curl -X POST http://localhost:8000 -H "Content-Type: application/json" -d "{\"4\
 docker build -t fast-api-hello-world:v0.0.1 .
 ```
 
+# Running docker image
+```bash
+# Create a container with the given image
+# `-d` - Run in detached mode (in the background)
+# If :v0.0.1 is not provided, docker will default to "latest"
+docker run -d -p 8000:8000 fast-api-hello-world:v0.0.1
+```
+
+# Moving from development to production
+```bash
+# Exporting docker image
+docker save your-image-name:tag > my-image.tar
+
+# Loading from saved image
+docker load < my-image.tar
+```
+
 # Common commands
 ```bash
 # Inspect images
 docker images
-
-# Run docker container
-# `-d` - Run in detached mode (in the background)
-# If :v0.0.1 is not provided, docker will default to "latest"
-docker run -d -p 8000:8000 fast-api-hello-world:v0.0.1
 
 # Check running containers
 # `-a` - Show all containers, including stopped
