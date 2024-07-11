@@ -68,4 +68,7 @@ docker rmi -f <image_id_or_name>:<tag>
 
 # Remove all unused images
 docker image prune -a
+
+# Clean docker build cache
+docker builder prune
 ```
