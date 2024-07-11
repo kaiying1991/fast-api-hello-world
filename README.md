@@ -71,4 +71,7 @@ docker image prune -a
 
 # Clean docker build cache
 docker builder prune
+
+# Remove all stopped containers, not used networks, all images that has got no container and build cache
+docker system prune -a
 ```
