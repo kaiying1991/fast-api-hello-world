@@ -91,7 +91,7 @@ docker system prune -a
 # Moving from development to production
 ```bash
 # Exporting docker image
-docker save fast-api-hello-world:v0.0.1:tag > fast-api-hello-world.tar
+docker save fast-api-hello-world:v0.0.1 > fast-api-hello-world.tar
 
 # Loading from saved image
 docker load < fast-api-hello-world.tar
