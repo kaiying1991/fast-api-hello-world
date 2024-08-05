@@ -30,8 +30,12 @@ curl -X POST http://localhost:8000 -H "Content-Type: application/json" -d "{\"4\
 # Build docker image
 - Build image
 ```bash
+# `--no-cache` - Do not use previous build cache
+# `--process=plain` - Will show container output (for debugging)
+docker build . -t <app_name>:<tag> --no-cache --process=plain
+
 # `-t` - Refer to tag, used for versioning, if not provided after :, docker will default to "latest"
-docker build -t fast-api-hello-world:v0.0.1 .
+docker build . -t fast-api-hello-world:v0.0.1 --no-cache --process=plain
 ```
 
 # Running docker image
@@ -42,19 +46,15 @@ docker build -t fast-api-hello-world:v0.0.1 .
 docker run -d -p 8000:8000 fast-api-hello-world:v0.0.1
 ```
 
-# Moving from development to production
-```bash
-# Exporting docker image
-docker save your-image-name:tag > my-image.tar
-
-# Loading from saved image
-docker load < my-image.tar
-```
-
 # Common commands
 ```bash
 # Inspect images
 docker images
+
+# Run docker container
+# `-d` - Run in detached mode (in the background)
+# If :v0.0.1 is not provided, docker will default to "latest"
+docker run -d -p 8000:8000 fast-api-hello-world:v0.0.1
 
 # Check running containers
 # `-a` - Show all containers, including stopped
@@ -86,4 +86,13 @@ docker builder prune
 
 # Remove all stopped containers, not used networks, all images that has got no container and build cache
 docker system prune -a
+```
+
+# Moving from development to production
+```bash
+# Exporting docker image
+docker save fast-api-hello-world:v0.0.1:tag > fast-api-hello-world.tar
+
+# Loading from saved image
+docker load < fast-api-hello-world.tar
 ```
